@@ -18,8 +18,8 @@ Biar aplikasi ini kencang, aman dari bug tipe data, dan gampang dikembangin, ini
 1.  **Peta Parkir Interaktif**: Peta area parkir berbasis canvas yang otomatis terupdate kalau ada slot yang kosong, terisi, atau lagi dalam perbaikan (*maintenance*).
 2.  **Filter Ukuran Mobil**: Membantu pengguna mencari slot parkir yang pas sesuai dengan ukuran kendaraan mereka (Kecil, Sedang, atau Besar).
 3.  **Reservasi Kiosk Mandiri**: Formulir pendaftaran reservasi parkir yang aman dengan validasi nomor plat, nama driver, dan estimasi durasi parkir.
-4.  **Live Session Timer**: Timer hitung mundur real-time buat memantau sisa waktu parkir lengkap dengan peringatan kalau waktu sesi sudah habis (lembur).
-5.  **Biaya dalam Rupiah (Rp)**: Semua tarif parkir dan denda lembur sudah menggunakan format mata uang Rupiah secara rapi (contoh: `Rp 9.000` atau `Rp 21.500`).
+4.  **Live Session Timer**: Timer hitung mundur real-time buat memantau sisa waktu parkir lengkap dengan peringatan kalau waktu sesi sudah habis (overtime).
+5.  **Biaya dalam Rupiah (Rp)**: Semua tarif parkir dan denda overtime sudah menggunakan format mata uang Rupiah secara rapi (contoh: `Rp 9.000` atau `Rp 21.500`).
 6.  **Dialog Konfirmasi**: Modal konfirmasi tambahan buat mencegah salah klik saat memilih slot atau ketika mau mengakhiri sesi parkir (*checkout*).
 7.  **Theme Engine Gelap & Terang**: Toggle tema global yang otomatis menyesuaikan visual di seluruh bagian layout aplikasi secara seragam.
 

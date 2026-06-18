@@ -3,13 +3,11 @@ import type { ParkingState, ParkingAction } from "./parking.types";
 export const initialParkingState: ParkingState = {
   slots: [
     { id: "A-01", status: "available", vehicleSize: "small", x: 30, y: 30 },
-    { id: "A-02", status: "occupied", vehicleSize: "medium", x: 180, y: 30 },
+    { id: "A-02", status: "available", vehicleSize: "medium", x: 180, y: 30 },
     { id: "A-03", status: "available", vehicleSize: "large", x: 330, y: 30 },
-    { id: "A-04", status: "occupied", vehicleSize: "medium", x: 480, y: 30 },
     { id: "B-01", status: "available", vehicleSize: "small", x: 30, y: 170 },
     { id: "B-02", status: "available", vehicleSize: "large", x: 180, y: 170 },
-    { id: "B-03", status: "occupied", vehicleSize: "medium", x: 330, y: 170 },
-    { id: "B-04", status: "available", vehicleSize: "small", x: 480, y: 170 },
+    { id: "B-03", status: "available", vehicleSize: "medium", x: 330, y: 170 },
   ],
   bookings: {},
   activeBookingId: null,
@@ -19,7 +17,7 @@ export const initialParkingState: ParkingState = {
 
 export const parkingReducer = (
   state: ParkingState,
-  action: ParkingAction
+  action: ParkingAction,
 ): ParkingState => {
   switch (action.type) {
     case "INITIALIZE":
@@ -45,12 +43,18 @@ export const parkingReducer = (
     case "RESERVE_SLOT": {
       const { booking } = action.payload;
       const targetSlot = state.slots.find((s) => s.id === booking.slotId);
-      if (!targetSlot || targetSlot.status !== "available" || targetSlot.disabled) {
+      if (
+        !targetSlot ||
+        targetSlot.status !== "available" ||
+        targetSlot.disabled
+      ) {
         return state;
       }
 
       const updatedSlots = state.slots.map((slot) =>
-        slot.id === booking.slotId ? { ...slot, status: "occupied" as const } : slot
+        slot.id === booking.slotId
+          ? { ...slot, status: "occupied" as const }
+          : slot,
       );
 
       return {
@@ -73,12 +77,18 @@ export const parkingReducer = (
       }
 
       const updatedSlots = state.slots.map((slot) =>
-        slot.id === booking.slotId ? { ...slot, status: "available" as const } : slot
+        slot.id === booking.slotId
+          ? { ...slot, status: "available" as const }
+          : slot,
       );
+
+      const updatedBookings = { ...state.bookings };
+      delete updatedBookings[bookingId];
 
       return {
         ...state,
         slots: updatedSlots,
+        bookings: updatedBookings,
         activeBookingId: null,
       };
     }

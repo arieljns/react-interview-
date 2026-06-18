@@ -1,17 +1,16 @@
 export interface ParkingSlotMapData {
-  
   id: string;
-  
+
   status: "available" | "occupied";
-  
+
   x: number;
-  
+
   y: number;
-  
+
   width?: number;
-  
+
   height?: number;
-  
+
   disabled?: boolean;
 }
 
@@ -22,4 +21,6 @@ export interface ParkingMapProps {
   width?: number;
   height?: number;
   theme?: "light" | "dark";
+  elapsedTime?: string;
+  activeSlotId?: string;
 }

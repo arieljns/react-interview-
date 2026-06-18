@@ -20,12 +20,7 @@ export default function BookingDetails() {
   >("none");
   const [showCheckoutConfirm, setShowCheckoutConfirm] = useState(false);
 
-  
-  const {
-    isOvertime,
-    formattedTime,
-    percentageElapsed,
-  } = useBookingSession({
+  const { isOvertime, formattedTime, percentageElapsed } = useBookingSession({
     booking,
     extendedHours,
     simulationMode,
@@ -90,7 +85,7 @@ export default function BookingDetails() {
     ...(isOvertime
       ? [
           {
-            label: "DENDA LEMBUR",
+            label: "DENDA OVERTIME",
             value: "Rp 12.500",
             valueClassName: "text-rose-500 dark:text-rose-400",
           },
@@ -139,7 +134,7 @@ export default function BookingDetails() {
             onClick={() => setSimulationMode("overtime")}
             size="sm"
           >
-            Simulasikan Peringatan Lembur
+            Simulasikan Peringatan Overtime
           </Button>
         </div>
       </Card>
@@ -152,7 +147,7 @@ export default function BookingDetails() {
             </div>
             <div>
               <h2 className="text-lg font-bold text-rose-800 dark:text-rose-300">
-                Waktu Lembur Terdeteksi
+                Overtime Terdeteksi
               </h2>
               <p className="text-xs text-rose-600 dark:text-rose-400/80 mt-0.5">
                 Sesi telah melebihi durasi yang dipesan. Silakan perpanjang atau
@@ -176,7 +171,7 @@ export default function BookingDetails() {
             />
             <div className="flex flex-col gap-2">
               <span className="text-xs font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">
-                {isOvertime ? "Lembur Berjalan" : "Sisa Waktu"}
+                {isOvertime ? "Overtime" : "Sisa Waktu"}
               </span>
               <div className="flex flex-wrap items-baseline gap-3">
                 <span className="text-5xl font-bold font-mono tracking-tight text-slate-900 dark:text-white">
@@ -214,7 +209,10 @@ export default function BookingDetails() {
               </span>
             </Card>
 
-            <Card className="p-5 flex flex-row items-center justify-between" hoverable>
+            <Card
+              className="p-5 flex flex-row items-center justify-between"
+              hoverable
+            >
               <div>
                 <span className="text-xs font-semibold uppercase text-slate-500 dark:text-slate-400">
                   Slot

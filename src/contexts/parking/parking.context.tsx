@@ -23,10 +23,29 @@ const initializer = () => {
       vehicleSize: cachedSlot.vehicleSize || defaultSlot?.vehicleSize || "medium",
     };
   });
+
+  const cleanedBookings: Record<string, Booking> = {};
+  if (cached.bookings) {
+    Object.keys(cached.bookings).forEach((bookingId) => {
+      const booking = cached.bookings[bookingId];
+      const slot = mergedSlots.find((s) => s.id === booking.slotId);
+      if (slot && slot.status === "occupied") {
+        cleanedBookings[bookingId] = booking;
+      }
+    });
+  }
+
+  let activeBookingId = cached.activeBookingId;
+  if (activeBookingId && !cleanedBookings[activeBookingId]) {
+    activeBookingId = null;
+  }
+
   return {
     ...initialParkingState,
     ...cached,
     slots: mergedSlots,
+    bookings: cleanedBookings,
+    activeBookingId,
     filters: cached.filters || {},
   };
 };
